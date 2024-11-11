@@ -83,7 +83,7 @@ export const getUser = async (req, res) => {
         const { pinataHash } = accessEntry;
 
         // Fetch the file from the provided Pinata IPFS link
-        const response = await axios.get(`https://${process.env.pinataGateway}/${pinataHash}`, { responseType: 'arraybuffer' });
+        const response = await axios.get(`https://${process.env.pinataGateway}/ipfs/${pinataHash}`, { responseType: 'arraybuffer' });
 
         const contentType = response.headers['content-type'];
 
@@ -102,7 +102,7 @@ export const getUser = async (req, res) => {
                 }
             });
 
-            console.log(pdfLinkText);
+            //console.log(pdfLinkText);
 
             // If a PDF link is found, fetch the PDF data
             if (pdfLinkText) {
@@ -112,13 +112,13 @@ export const getUser = async (req, res) => {
             }
         } else if (contentType.includes('application/pdf')) {
             // Send the PDF content
-            console.log("PDF file detected");
+            //console.log("PDF file detected");
             res.set('Content-Type', 'application/pdf');
             res.send(response.data);
 
         } else if (contentType.includes('image/png') || contentType.includes('image/jpeg') || contentType.includes('image/jpg')) {
             // Send the image content with correct content type
-            console.log("Image file detected", contentType);
+            //console.log("Image file detected", contentType);
             const response = await axios.get(`https://${process.env.pinataGateway}/ipfs/${pinataHash}`, { responseType: 'arraybuffer' });
 
             // Set proper headers for image
