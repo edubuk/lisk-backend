@@ -1,1 +1,1 @@
-# Edubuk-xdc-mainnet-application
+# Edubuk-xdc-mainnet-application-official
