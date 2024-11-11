@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv'
 dotenv.config();
-const secret_Key = process.env.secret_key;
+const secret_Key = process.env.secret_Key;
 const payloadData = process.env.payloadData;
 export const generateToken =()=> {
 // Set `noTimestamp` to true to exclude `iat`
@@ -16,9 +16,9 @@ export const authenticateToken = (req,res,next)=>{
     console.log("Token value",token);
     if(!token)
         return res.status(401).json({message:'Token Required'});
-
+    //console.log("secret key",secret_Key)
     jwt.verify(token,secret_Key,(err,decoded)=>{
-        console.log("payload data ",decoded)
+        //console.log("payload data ",decoded)
         if(err) return res.status(403).json({message:'Invalid Token',
             error:err
         });
