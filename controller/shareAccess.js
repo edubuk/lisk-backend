@@ -83,7 +83,7 @@ export const getUser = async (req, res) => {
         const { pinataHash } = accessEntry;
 
         // Fetch the file from the provided Pinata IPFS link
-        const response = await axios.get(`https://red-traditional-hookworm-447.mypinata.cloud/ipfs/${pinataHash}`, { responseType: 'arraybuffer' });
+        const response = await axios.get(`https://${process.env.pinataGateway}/${pinataHash}`, { responseType: 'arraybuffer' });
 
         const contentType = response.headers['content-type'];
 
@@ -106,7 +106,7 @@ export const getUser = async (req, res) => {
 
             // If a PDF link is found, fetch the PDF data
             if (pdfLinkText) {
-                const pdfData = await axios.get(`https://red-traditional-hookworm-447.mypinata.cloud/ipfs/${pinataHash}/${pdfLinkText}`, { responseType: 'arraybuffer' });
+                const pdfData = await axios.get(`https://${process.env.pinataGateway}/ipfs/${pinataHash}/${pdfLinkText}`, { responseType: 'arraybuffer' });
                 res.set('Content-Type', 'application/pdf');
                 res.send(pdfData?.data);
             }
@@ -119,7 +119,7 @@ export const getUser = async (req, res) => {
         } else if (contentType.includes('image/png') || contentType.includes('image/jpeg') || contentType.includes('image/jpg')) {
             // Send the image content with correct content type
             console.log("Image file detected", contentType);
-            const response = await axios.get(`https://red-traditional-hookworm-447.mypinata.cloud/ipfs/${pinataHash}`, { responseType: 'arraybuffer' });
+            const response = await axios.get(`https://${process.env.pinataGateway}/ipfs/${pinataHash}`, { responseType: 'arraybuffer' });
 
             // Set proper headers for image
             res.set({
@@ -255,7 +255,7 @@ export const getDocByUri = async (req, res) => {
         const { pinataHash } = req.params;
 
         // Fetch the file from the provided Pinata IPFS link
-        const response = await axios.get(`https://red-traditional-hookworm-447.mypinata.cloud/ipfs/${pinataHash}`, { responseType: 'arraybuffer' });
+        const response = await axios.get(`https://${process.env.pinataGateway}/ipfs/${pinataHash}`, { responseType: 'arraybuffer' });
 
         const contentType = response.headers['content-type'];
 
@@ -278,7 +278,7 @@ export const getDocByUri = async (req, res) => {
 
             // If a PDF link is found, fetch the PDF data
             if (pdfLinkText) {
-                const pdfData = await axios.get(`https://red-traditional-hookworm-447.mypinata.cloud/ipfs/${pinataHash}/${pdfLinkText}`, { responseType: 'arraybuffer' });
+                const pdfData = await axios.get(`https://${process.env.pinataGateway}/ipfs/${pinataHash}/${pdfLinkText}`, { responseType: 'arraybuffer' });
                 res.set('Content-Type', 'application/pdf');
                 res.send(pdfData?.data);
             }
@@ -289,7 +289,7 @@ export const getDocByUri = async (req, res) => {
             res.send(response.data);
 
         } else if (contentType.includes('image/png') || contentType.includes('image/jpeg') || contentType.includes('image/jpg')) {
-            const response = await axios.get(`https://red-traditional-hookworm-447.mypinata.cloud/ipfs/${pinataHash}`, { responseType: 'arraybuffer' });
+            const response = await axios.get(`https://${process.env.pinataGateway}/ipfs/${pinataHash}`, { responseType: 'arraybuffer' });
 
             res.set({
                 'Content-Type': contentType,
