@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-
+//schema
 const accessRecordSchema = new mongoose.Schema({
     email: {
         type: String,

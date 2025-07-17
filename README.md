@@ -1,1 +1,1 @@
-# Edubuk-xdc-mainnet-application-official
+# Edubuk-Lisk-application-official

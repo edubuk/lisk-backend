@@ -2,7 +2,7 @@ import express from 'express';
 import {deleteUser, getDocByUri, getRecordByURI, getUser, removeAccess, shareAccess} from '../controller/shareAccess.js'
 import { authenticateToken } from '../middleware/auth.js';
 const router = express.Router();
-
+//routes
 router.post('/shareAccess',authenticateToken,shareAccess);
 router.get('/getResponse/:userId',getUser);
 router.put('/removeAccess',authenticateToken,removeAccess);
