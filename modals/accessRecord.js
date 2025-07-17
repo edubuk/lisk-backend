@@ -28,6 +28,6 @@ const accessRecordSchema = new mongoose.Schema({
     ]
 }, { timestamps: true });
 
-const accessRecord = mongoose.model('accessRecord', accessRecordSchema);
+const accessRecord = mongoose.model('accessLiskRecord', accessRecordSchema);
 
 export default accessRecord;
